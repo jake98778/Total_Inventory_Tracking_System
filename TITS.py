@@ -5,7 +5,8 @@ import requests
 
 #below is copied code from a open source repo. This is zbarcam example proj currently running
 #we need to make this a selectable section in the app. So need to build a paging system first
-#Will make diagram of app flow page layout and put in wiki.
+#App flow diagram is in the wiki.
+
 DEMO_APP_KV_LANG = """
 #:import ZBarCam kivy_garden.zbarcam.ZBarCam
 BoxLayout:
