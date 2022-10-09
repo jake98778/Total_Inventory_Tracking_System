@@ -1,18 +1,31 @@
 from kivy.app import App
-from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
+from kivy.lang import Builder
+import requests
+#tested requests already and this is working currently. Must be prebuilt into python so opop
+
+#below is copied code from a open source repo. This is zbarcam example proj currently running
+#we need to make this a selectable section in the app. So need to build a paging system first
+#Will make diagram of app flow page layout and put in wiki.
+DEMO_APP_KV_LANG = """
+#:import ZBarCam kivy_garden.zbarcam.ZBarCam
+BoxLayout:
+    orientation: 'vertical'
+    ZBarCam:
+        id: zbarcam
+        # optional, by default checks all types
+        code_types: 'QRCODE', 'EAN13'
+    Label:
+        size_hint: None, None
+        size: self.texture_size[0], 50
+        text: ', '.join([str(symbol.data) for symbol in zbarcam.symbols])
+"""
 
 
-class YourApp(App):
+class DemoApp(App):
+
     def build(self):
-        layout = BoxLayout(orientation='vertical')
-        b1 = Button(text='button 1')
-        b2 = Button(text='button 2')
-
-        layout.add_widget(b1)
-        layout.add_widget(b2)
-
-        return layout
+        return Builder.load_string(DEMO_APP_KV_LANG)
 
 
-YourApp().run()
+if __name__ == '__main__':
+    DemoApp().run()
