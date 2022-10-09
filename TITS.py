@@ -15,17 +15,17 @@ Builder.load_string("""
         row_default_height: 40
 
         Button:
-            text: 'Login'
-            on_press: root.manager.current = 'login'
+            text: 'Drop off'
+            on_press: root.manager.current = 'dropoff'
             size_hint_x: None
             width: 100
         Button:
-            text: 'Sign Up'
-            on_press: root.manager.current = 'signup'
+            text: 'Pick up'
+            on_press: root.manager.current = 'pickup'
             size_hint_x: None
             width: 100
 
-<LoginScreen>:
+<DropoffScreen>:
     GridLayout:
 
         cols: 2
@@ -34,7 +34,7 @@ Builder.load_string("""
         row_default_height: 40
 
         Button:
-            text: 'login page'
+            text: 'Dropoff page'
             size_hint_x: None
             width: 100
         Button:
@@ -42,18 +42,18 @@ Builder.load_string("""
             on_press: root.manager.current = 'menu'
             size_hint_x: None
             width: 100
-        TextInput
-            text: 'email'
+        Button:
+            text: 'Scan Barcode'
+            on_press: root.manager.current = 'scan'
             size_hint_x: None
             width: 100
-            hight: 50
         TextInput
-            text: 'Password'
+            text: 'Would be scan results / manual enter section'
             size_hint_x: None
-            width: 100
+            width: 400
             hight: 50
 
-<SignupScreen>:
+<PickupScreen>:
     GridLayout:
 
         cols: 2
@@ -62,9 +62,37 @@ Builder.load_string("""
         row_default_height: 40
 
         Button:
-            text: 'SignUp page'
+            text: 'Pickup page'
             size_hint_x: None
             width: 100
+        Button:
+            text: 'Menu'
+            on_press: root.manager.current = 'menu'
+            size_hint_x: None
+            width: 100
+        Button:
+            text: 'Scan Barcode'
+            on_press: root.manager.current = 'scan'
+            size_hint_x: None
+            width: 100
+        TextInput
+            text: 'Would be scan results / manual enter section'
+            size_hint_x: None
+            width: 400
+            hight: 50
+
+<ScanScreen>:
+    GridLayout:
+
+        cols: 2
+        rows: 2
+        row_force_default: True
+        row_default_height: 40
+
+        Button:
+            text: 'Mock scan page'
+            size_hint_x: None
+            width: 200
         Button:
             text: 'Menu'
             on_press: root.manager.current = 'menu'
@@ -77,10 +105,13 @@ Builder.load_string("""
 class MenuScreen(Screen):
     pass
 
-class LoginScreen(Screen):
+class DropoffScreen(Screen):
     pass
 
-class SignupScreen(Screen):
+class PickupScreen(Screen):
+    pass
+
+class ScanScreen(Screen):
     pass
 
 class TestApp(App):
@@ -89,8 +120,9 @@ class TestApp(App):
         # Create the screen manager
         sm = ScreenManager()
         sm.add_widget(MenuScreen(name='menu'))
-        sm.add_widget(LoginScreen(name='login'))
-        sm.add_widget(SignupScreen(name='signup'))
+        sm.add_widget(DropoffScreen(name='dropoff'))
+        sm.add_widget(PickupScreen(name='pickup'))
+        sm.add_widget(ScanScreen(name='scan'))
 
         return sm
 
